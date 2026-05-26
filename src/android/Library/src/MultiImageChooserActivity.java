@@ -64,6 +64,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Base64;
 import android.util.SparseBooleanArray;
 import android.view.Display;
@@ -125,9 +126,13 @@ public class MultiImageChooserActivity extends AppCompatActivity implements
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setTheme(androidx.appcompat.R.style.Theme_AppCompat_Light_NoActionBar);
         super.onCreate(savedInstanceState);
         fakeR = new FakeR(this);
         setContentView(fakeR.getId("layout", "multiselectorgrid"));
+
+        Toolbar toolbar = (Toolbar) findViewById(fakeR.getId("id", "multi_image_toolbar"));
+        setSupportActionBar(toolbar);
         fileNames.clear();
 
         maxImages = getIntent().getIntExtra(MAX_IMAGES_KEY, NOLIMIT);
